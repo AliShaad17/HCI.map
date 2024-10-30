@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geolocation Test</title>
+</head>
+<body>
+    <h1>Geolocation Test</h1>
+    <p id="locationStatus">Finding location...</p>
+    <script>
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    document.getElementById('locationStatus').textContent = 
+                        `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+                },
+                (error) => {
+                    document.getElementById('locationStatus').textContent = "Error: " + error.message;
+                    console.error("Geolocation error:", error);
+                }
+            );
+        } else {
+            document.getElementById('locationStatus').textContent = "Geolocation is not supported by this browser.";
+        }
+    </script>
+</body>
+</html>
