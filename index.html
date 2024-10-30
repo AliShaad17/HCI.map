@@ -23,7 +23,7 @@
             zoom: 12 
         });
 
-        // Geolocation to get the user's current location
+        // Enhanced Geolocation to get the user's current location
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (position) => {
@@ -36,8 +36,10 @@
                         .setPopup(new mapboxgl.Popup().setHTML("<h3>You are here!</h3>")) // Optional popup
                         .addTo(map);
                 },
-                () => {
-                    alert("Could not get location");
+                (error) => {
+                    // Handle geolocation errors with detailed feedback
+                    console.log("Geolocation error:", error.message);
+                    alert("Could not get location. Please check your device's location permissions and try again.");
                 }
             );
         } else {
